@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export type WeatherResponse = {
   coord: {
     lon: number;
@@ -45,4 +47,19 @@ export type WeatherResponse = {
   id: number;
   name: string;
   cod: number;
+};
+
+export type WeatherContextType = {
+  city: string;
+  setCity: React.Dispatch<React.SetStateAction<string>>;
+  weatherData: WeatherResponse | null;
+  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  isLoading: boolean;
+  error: string | null;
+  getWeatherIconUrl: (icon: string) => string;
+  getBackgroundImage: (main: string) => string;
+};
+
+export type WeatherProviderProps = {
+  children: ReactNode;
 };

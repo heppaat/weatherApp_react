@@ -25,3 +25,6 @@ dist-ssr
 
 # misc
 .env.local
+
+# Ignore all PNG files in the public folder
+public/*.png

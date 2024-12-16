@@ -28,15 +28,23 @@ export const WeatherProvider: React.FC<WeatherProviderProps> = ({
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (!city.trim()) {
+      setError("Please provide a city name");
+      console.log(error);
+      return;
+    }
     setIsLoading(true);
+    setError(null);
     try {
       const data = await fetchData(city);
+      console.log(data);
       setWeatherData(data);
     } catch (error) {
       setError(
         (error as Error).message ||
           "Unable to fetch weather data. Please try again."
       );
+      console.error(error);
     } finally {
       setIsLoading(false);
     }
@@ -70,21 +78,21 @@ export const WeatherProvider: React.FC<WeatherProviderProps> = ({
 
   const getBackgroundImage = (main: string) => {
     const weatherCondition: Record<string, string> = {
-      Rain: "rain.png",
-      Mist: "mist.png",
-      Haze: "mist.png",
-      Fog: "mist.png",
-      Thunderstorm: "thunderstorm.png",
-      Snow: "snow.png",
-      Clouds: "clouds.png",
-      Clear: "clear_sky.png",
-      Dust: "atmosphere.png",
-      Smoke: "atmosphere.png",
-      Sand: "atmosphere.png",
-      Ash: "atmosphere.png",
-      Squall: "atmosphere.png",
+      Rain: "/rain.png",
+      Mist: "/mist.png",
+      Haze: "/mist.png",
+      Fog: "/mist.png",
+      Thunderstorm: "/thunderstorm.png",
+      Snow: "/snow.png",
+      Clouds: "/clouds.png",
+      Clear: "/clear_sky.png",
+      Dust: "/atmosphere.png",
+      Smoke: "/atmosphere.png",
+      Sand: "/atmosphere.png",
+      Ash: "/atmosphere.png",
+      Squall: "/atmosphere.png",
     };
-    return weatherCondition[main] || "clear_sky.png";
+    return weatherCondition[main] || "/clear_sky.png";
   };
 
   const value: WeatherContextType = {

@@ -95,6 +95,10 @@ export const WeatherProvider: React.FC<WeatherProviderProps> = ({
     return weatherCondition[main] || "/clear_sky.png";
   };
 
+  const kelvinToCelsius = (kelvin: number) => {
+    return kelvin - 273.15;
+  };
+
   const value: WeatherContextType = {
     city,
     setCity,
@@ -104,6 +108,7 @@ export const WeatherProvider: React.FC<WeatherProviderProps> = ({
     error,
     getWeatherIconUrl,
     getBackgroundImage,
+    kelvinToCelsius,
   };
 
   return (

@@ -10,12 +10,13 @@ const WeatherCard = () => {
     isLoading,
     error,
     getWeatherIconUrl,
+    kelvinToCelsius,
   } = useWeatherContext();
 
   return (
     <Card className="max-w-md mx-auto shadow-lg border rounded-lg">
       <CardHeader>
-        <CardTitle className="text-center text-2xl font-bold">
+        <CardTitle className="text-center text-2xl font-sans">
           Weather Search
         </CardTitle>
       </CardHeader>
@@ -30,7 +31,7 @@ const WeatherCard = () => {
           />
           <button
             type="submit"
-            className={`w-full px-4 py-2 bg-blue-500 text-white rounded-md ${
+            className={`w-full px-4 py-2 bg-blue-500 text-white rounded-md transition-all duration-300 ease-in-out ${
               isLoading ? "opacity-50 cursor-not-allowed" : "hover:bg-blue-600"
             }`}
             disabled={isLoading}
@@ -49,16 +50,16 @@ const WeatherCard = () => {
               <img
                 src={getWeatherIconUrl(weatherData.weather[0].icon)}
                 alt={weatherData.weather[0].description}
-                className="w-16 h-16"
+                className="w-24 h-24"
               />
             </div>
-            <p className="text-center text-xl font-semibold">
+            <p className="text-center text-xl font-sans font-semibold">
               {weatherData.name}
             </p>
-            <p className="text-center text-lg">
-              Temperature: {weatherData.main.temp.toFixed(1)}°C
+            <p className="text-center text-lg font-sans font-normal">
+              Temperature: {kelvinToCelsius(weatherData.main.temp).toFixed(1)}°C
             </p>
-            <p className="text-center text-lg">
+            <p className="text-center text-lg font-sans font-normal">
               {weatherData.weather[0].description}
             </p>
           </div>

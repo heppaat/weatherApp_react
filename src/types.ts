@@ -58,6 +58,7 @@ export type WeatherContextType = {
   error: string | null;
   getWeatherIconUrl: (icon: string) => string;
   getBackgroundImage: (main: string) => string;
+  kelvinToCelsius: (kelvin: number) => number;
 };
 
 export type WeatherProviderProps = {
